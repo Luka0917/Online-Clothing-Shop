@@ -73,24 +73,30 @@ export default function ProductDetails(){
 
     const reviews = [
         {
-            text: "Absolutely stunning quality. The fabric feels incredible and the fit is perfect.",
+            textEn: "Absolutely stunning quality. The fabric feels incredible and the fit is perfect.",
+            textKa: "აბსოლუტურად განსაცვიფრებელი ხარისხი. ქსოვილი წარმოუდგენლად სასიამოვნოა და იდეალურად ერგება.",
             user: "Alice M.",
-            date: "Jan 2026"
+            dateEn: "Jan 2026",
+            dateKa: "იან 2026"
         },
         {
-            text: "Beautiful piece, runs slightly large. I'd recommend sizing down if you're between sizes.",
+            textEn: "Beautiful piece, runs slightly large. I'd recommend sizing down if you're between sizes.",
+            textKa: "ლამაზი ნივთია, ოდნავ დიდი ზომისაა. თუ ზომებს შორის ხართ, გირჩევთ, ზომა შეამციროთ.",
             user: "David K.",
-            date: "Dec 2025"
+            dateEn: "Dec 2025",
+            dateKa: "დეკ 2026"
         },
         {
-            text: "Arrived quickly and beautifully packaged. This has become my favourite piece in my wardrobe.",
+            textEn: "Arrived quickly and beautifully packaged. This has become my favourite piece in my wardrobe.",
+            textKa: "სწრაფად და ლამაზად შეფუთული მოვიდა. ეს ჩემი გარდერობის საყვარელი ნივთი გახდა.",
             user: "Sophie L.",
-            date: "Feb 2026"
+            dateEn: "Feb 2026",
+            dateKa: "თებ 2026"
         }
     ]
     
     return (
-        <div className={`${theme === 'light' ? 'bg-[#f9f7f5]' : 'bg-[#171311]'} min-h-screen transition-all duration-200 text-white`}>
+        <div className={`${theme === 'light' ? 'bg-[#f9f7f5]' : 'bg-[#171311]'} min-h-screen transition-all duration-200 textEn-white`}>
             <Navbar />
             <div className="flex justify-center flex-col px-70 py-30">
                 <div className="text-sm text-[#988a7e] flex gap-2.5">
@@ -118,7 +124,7 @@ export default function ProductDetails(){
                         <h2 className={`${theme === 'light' ? 'text-black' : 'text-white'} font text-4xl font-bold mt-2`}>{product.name}</h2>
                         <p className={`${theme === 'light' ? 'text-black' : 'text-white'} font text-2xl font-semibold mt-3`}>${product.price}</p>
                         <p className="text-[#988a7e] w-140 mt-5">{product.description}</p>
-                        <p className={`${theme === 'light' ? 'text-black' : 'text-white'} text-lg font-medium mt-5`}>Size</p>
+                        <p className={`${theme === 'light' ? 'text-black' : 'text-white'} text-lg font-medium mt-5`}>{lang === 'en' ? 'Size' : 'ზომა'}</p>
                         <div className="flex items-center gap-5 mt-2">
                             {sizes.map((el, i) => (
                                 <div 
@@ -138,7 +144,7 @@ export default function ProductDetails(){
                                 </div>
                             ))}
                         </div>
-                        <p className={`${theme === 'light' ? 'text-black' : 'text-white'} text-lg font-medium mt-5`}>Quantity</p>
+                        <p className={`${theme === 'light' ? 'text-black' : 'text-white'} text-lg font-medium mt-5`}>{lang === 'en' ? 'Quantity' : 'რაოდენობა'}</p>
                         <div className="flex items-center gap-5 mt-2">
                             <button 
                                 onClick={() => setQuantity(prev => Math.max(1, prev - 1))} 
@@ -162,9 +168,9 @@ export default function ProductDetails(){
                         </div>
                         {
                             product.stock > 0 ? 
-                                <p className={`${theme === 'light' ? 'text-[#44a877]' : 'text-[#279a62]'} flex items-center gap-2 mt-5`}><IoCheckmarkOutline /> In Stock — Ships in 1-3 business days</p> 
+                                <p className={`${theme === 'light' ? 'text-[#44a877]' : 'text-[#279a62]'} flex items-center gap-2 mt-5`}><IoCheckmarkOutline /> {lang === 'en' ? 'In Stock — Ships in 1-3 business days' : 'მარაგშია — იგზავნება 1-3 სამუშაო დღეში'}</p> 
                                 :
-                                <p className={`${theme === 'light' ? 'text-[#dd4243]' : 'text-[#751c1c]'} flex items-center gap-2 mt-5`}>Out of Stock — Notify me when available</p>
+                                <p className={`${theme === 'light' ? 'text-[#dd4243]' : 'text-[#751c1c]'} flex items-center gap-2 mt-5`}>{lang === 'en' ? 'Out of Stock — Notify me when available' : 'მარაგში არ არის — შემატყობინეთ, როდესაც ხელმისაწვდომი იქნება'}</p>
                         }
                         <button
                             onClick={addItemToCart}
@@ -173,51 +179,51 @@ export default function ProductDetails(){
                                 flex justify-center items-center gap-5 w-140 rounded py-3 mt-5 cursor-pointer transition-all duration-200
                             `}
                             >
-                                <LuShoppingCart size={20} /> Add to Cart - ${(product.price * quantity).toFixed(2)}
+                                <LuShoppingCart size={20} /> {lang === 'en' ? 'Add to Cart' : 'კალათაში დამატება'} - ${(product.price * quantity).toFixed(2)}
                         </button>
                         <div className={`${theme === 'light' ? 'border-[#e5e0dc]' : 'border-[#38312e]'} border-t mt-10 pt-5 flex flex-col gap-2.5`}>
-                            <p className="flex items-center gap-3 text-sm text-[#988a7e]"><LuTruck /> Free shipping on orders over $300</p>
-                            <p className="flex items-center gap-3 text-sm text-[#988a7e]"><FaArrowRotateLeft /> 30-day free returns & exchanges</p>
-                            <p className="flex items-center gap-3 text-sm text-[#988a7e]"><LuShield /> 2-year quality guarantee</p>
+                            <p className="flex items-center gap-3 text-sm text-[#988a7e]"><LuTruck /> {lang === 'en' ? 'Free shipping on orders over $300' : 'უფასო მიწოდება 300$-ზე მეტი ღირებულების შეკვეთაზე'}</p>
+                            <p className="flex items-center gap-3 text-sm text-[#988a7e]"><FaArrowRotateLeft /> {lang === 'en' ? '30-day free returns & exchanges' : '30-დღიანი უფასო დაბრუნება და გაცვლა'}</p>
+                            <p className="flex items-center gap-3 text-sm text-[#988a7e]"><LuShield /> {lang === 'en' ? '2-year quality guarantee' : '2 წლიანი ხარისხის გარანტია'}</p>
                         </div>
                     </div>
                 </div>
 
                 <div ref={productDetailsInfoRef} className={`${theme === 'light' ? 'border-[#e5e0dc]' : 'border-[#38312e]'} flex justify-between mt-20 pt-10 border-t`}>
                     <div className={`${productDetailsInfoInView ? 'slide-in-bottom-animation' : 'opacity-0'}`}>
-                        <h4 className={`${theme === 'light' ? 'text-black' : 'text-white'} font text-xl`}>Materials</h4>
-                        <p className="text-[#988a7e] w-107 mt-3">Crafted from premium, responsibly sourced materials. Each piece is selected for durability, comfort, and timeless appeal.</p>
+                        <h4 className={`${theme === 'light' ? 'text-black' : 'text-white'} font text-xl`}>{lang === 'en' ? 'Materials' : 'მასალები'}</h4>
+                        <p className="text-[#988a7e] w-107 mt-3">{lang === 'en' ? 'Crafted from premium, responsibly sourced materials. Each piece is selected for durability, comfort, and timeless appeal.' : 'დამზადებულია პრემიუმ, პასუხისმგებლობით მოპოვებული მასალებისგან. თითოეული ნივთი შერჩეულია გამძლეობის, კომფორტისა და მარადიული მიმზიდველობის მიხედვით.'}</p>
                         <ul className="list-disc list-inside text-[#988a7e] mt-2">
-                            <li>Ethically sourced fabrics</li>
-                            <li>OEKO-TEX® certified</li>
-                            <li>Biodegradable packaging</li>
+                            <li>{lang === 'en' ? 'Ethically sourced fabrics' : 'ეთიკურად მოპოვებული ქსოვილები'}</li>
+                            <li>OEKO-TEX® {lang === 'en' ? 'certified' : 'სერტიფიცირებული'}</li>
+                            <li>{lang === 'en' ? 'Biodegradable packaging' : 'ბიოდეგრადირებადი შეფუთვა'}</li>
                         </ul>
                     </div>
                     <div className={`${productDetailsInfoInView ? 'slide-in-bottom-animation' : 'opacity-0'}`} style={{ animationDelay: '100ms' }}>
-                        <h4 className={`${theme === 'light' ? 'text-black' : 'text-white'} font text-xl`}>Care Instructions</h4>
-                        <p className="text-[#988a7e] w-87 mt-3">Proper care ensures your garment lasts for years.</p>
+                        <h4 className={`${theme === 'light' ? 'text-black' : 'text-white'} font text-xl`}>{lang === 'en' ? 'Care Instructions' : 'მოვლის ინსტრუქციები'}</h4>
+                        <p className="text-[#988a7e] w-87 mt-3">{lang === 'en' ? 'Proper care ensures your garment lasts for years.' : 'სათანადო მოვლა უზრუნველყოფს, რომ თქვენი ტანსაცმელი წლების განმავლობაში გაძლებს.'}</p>
                         <ul className="list-disc list-inside text-[#988a7e] mt-2">
-                            <li>Dry clean recommended</li>
-                            <li>Store on padded hangers</li>
-                            <li>Avoid direct sunlight</li>
-                            <li>Iron on low heat</li>
-                            <li>Do not bleach</li>
+                            <li>{lang === 'en' ? 'Dry clean recommended' : 'რეკომენდებულია მშრალი გაწმენდა'}</li>
+                            <li>{lang === 'en' ? 'Store on padded hangers' : 'შეინახეთ რბილი საკიდების ფირფიტებზე'}</li>
+                            <li>{lang === 'en' ? 'Avoid direct sunlight' : 'მოერიდეთ მზის პირდაპირ სხივებს'}</li>
+                            <li>{lang === 'en' ? 'Iron on low heat' : 'დაუთოება დაბალ ცეცხლზე'}</li>
+                            <li>{lang === 'en' ? 'Do not bleach' : 'არ გაათეთროთ'}</li>
                         </ul>
                     </div>
                     <div className={`${productDetailsInfoInView ? 'slide-in-bottom-animation' : 'opacity-0'}`} style={{ animationDelay: '200ms' }}>
-                        <h4 className={`${theme === 'light' ? 'text-black' : 'text-white'} font text-xl`}>Sizing & Fit</h4>
-                        <p className="text-[#988a7e] w-80 mt-3">True to size. Model is 5'11" and wears size M.</p>
+                        <h4 className={`${theme === 'light' ? 'text-black' : 'text-white'} font text-xl`}>{lang === 'en' ? 'Sizing & Fit' : 'ზომა & მორგება'}</h4>
+                        <p className="text-[#988a7e] w-80 mt-3">{lang === 'en' ? "True to size. Model is 5'11'' and wears size M." : "ზომა შესაბამისი. მოდელის სიმაღლეა 178 სმ და აცვია M ზომა."}</p>
                         <ul className="list-disc list-inside text-[#988a7e] mt-2">
-                            <li>XS: Chest 34-36"</li>
-                            <li>S: Chest 36-38"</li>
-                            <li>M: Chest 38-40"</li>
-                            <li>L: Chest 40-42"</li>
-                            <li>XL: Chest 42-44"</li>
+                            <li>XS: {lang === 'en' ? "Chest 34-36''" : "მკერდი 34-36 ინჩი"}</li>
+                            <li>S: {lang === 'en' ? "Chest 36-38''" : "მკერდი 36-38 ინჩი"}</li>
+                            <li>M: {lang === 'en' ? "Chest 38-40''" : "მკერდი 38-40 ინჩი"}</li>
+                            <li>L: {lang === 'en' ? "Chest 40-42''" : "მკერდი 40-42 ინჩი"}</li>
+                            <li>XL: {lang === 'en' ? "Chest 42-44''" : "მკერდი 42-44 ინჩი"}</li>
                         </ul>
                     </div>
                 </div>
                 <div className={`${theme === 'light' ? 'border-[#e5e0dc]' : 'border-[#38312e]'} mt-20 pt-13 border-t`}>
-                    <h3 className={`${theme === 'light' ? 'text-black' : 'text-white'} font text-2xl mb-8`}>Customer Reviews</h3>
+                    <h3 className={`${theme === 'light' ? 'text-black' : 'text-white'} font text-2xl mb-8`}>{lang === 'en' ? 'Customer Reviews' : 'მომხმარებელთა მიმოხილვები'}</h3>
                     <div ref={reviewsRef} className="flex justify-between items-center">
                         {reviews.map((el, i) => (
                             <div 
@@ -236,17 +242,17 @@ export default function ProductDetails(){
                                     <FaStar />
                                     <FaStar />
                                 </div>
-                                <p className="text-sm w-89 text-[#988a7e] mt-2.5">"{el.text}"</p>
+                                <p className={`${lang === 'en' ? 'text-sm' : 'text-xs'} w-89 text-[#988a7e] mt-2.5`}>"{lang === 'en' ? el.textEn : el.textKa}"</p>
                                 <div className="flex justify-between items-center mt-3">
                                     <p className={`${theme === 'light' ? 'text-black' : 'text-white'} text-sm`}>{el.user}</p>
-                                    <p className="text-xs text-[#988a7e]">{el.date}</p>
+                                    <p className="text-xs text-[#988a7e]">{lang === 'en' ? el.dateEn : el.dateKa}</p>
                                 </div>
                             </div>
                         ))}
                     </div>
                 </div>
                 <div className="mt-25">
-                    <h3 className={`${theme === 'light' ? 'text-black' : 'text-white'} font text-2xl mb-8`}>You May Also Like</h3>
+                    <h3 className={`${theme === 'light' ? 'text-black' : 'text-white'} font text-2xl mb-8`}>{lang === 'en' ? 'You May Also Like' : 'თქვენ ასევე შეიძლება მოგეწონოთ'}</h3>
                     <div ref={youMayAlsoLikeref} className="flex justify-between">
                         {bottomProducts.map((el, i) => (
                             <Link 
