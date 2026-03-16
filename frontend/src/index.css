@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import "tailwindcss";
+
+.font{
+  font-family: 'Playfair Display';
+}
+
+#home-page-products{
+  display: grid;
+  grid-template-columns: repeat(3, 352px);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 100px;
+}
+
+#shop-page-products{
+  display: grid;
+  grid-template-columns: repeat(4, 300px);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 47px;
+  padding-left: 280px;
+  padding-top: 25px;
+  padding-bottom: 75px;
+}
+
+.slide-in-left-animation{
+  animation: slide-in-left 0.5s;
+}
+
+.slide-in-right-animation{
+  animation: slide-in-right 0.5s;
+}
+
+#profile-dropdown{
+  animation: scale-in-top 0.3s;
+}
+
+.slide-in-bottom-animation{
+  animation: slide-in-bottom 0.5s ease both; 
+  opacity: 0;
+}
+
+/*! ---------- most of thing on website ---------- */
+@-webkit-keyframes slide-in-bottom {
+  0% {
+    -webkit-transform: translateY(50px);
+            transform: translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes slide-in-bottom {
+  0% {
+    -webkit-transform: translateY(50px);
+            transform: translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    opacity: 1;
+  }
+}
+/*! ---------------------------------------------- */
+
+/*! ---------- auth page & product details ---------- */
+@-webkit-keyframes slide-in-left {
+  0% {
+    -webkit-transform: translateX(-50px);
+            transform: translateX(-50px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes slide-in-left {
+  0% {
+    -webkit-transform: translateX(-50px);
+            transform: translateX(-50px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+}
+/*! ------------------------------------------------- */
+
+/*! ---------- product details ---------- */
+@-webkit-keyframes slide-in-right {
+  0% {
+    -webkit-transform: translateX(50px);
+            transform: translateX(50px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes slide-in-right {
+  0% {
+    -webkit-transform: translateX(50px);
+            transform: translateX(50px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+}
+/*! ------------------------------------- */
+
+/*! ---------- profile dropdown on navbar ---------- */
+@-webkit-keyframes scale-in-top {
+  0% {
+    -webkit-transform: scale(0.8);
+            transform: scale(0.8);
+    -webkit-transform-origin: 50% 0%;
+            transform-origin: 50% 0%;
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-transform-origin: 50% 0%;
+            transform-origin: 50% 0%;
+    opacity: 1;
+  }
+}
+@keyframes scale-in-top {
+  0% {
+    -webkit-transform: scale(0.8);
+            transform: scale(0.8);
+    -webkit-transform-origin: 50% 0%;
+            transform-origin: 50% 0%;
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-transform-origin: 50% 0%;
+            transform-origin: 50% 0%;
+    opacity: 1;
+  }
+}
+/*! ------------------------------------------------ */
