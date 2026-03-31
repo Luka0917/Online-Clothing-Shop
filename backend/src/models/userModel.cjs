@@ -16,12 +16,22 @@ const getUserById = id => {
 };
 
 const deleteUser = id => {
-    return db.prepare(`DELETE FROM users WHERE id = ?`).run(id);
+    db.prepare(`DELETE FROM users WHERE id = ?`).run(id);
+};
+
+const updateUserInfo = (id, full_name, email) => {
+    return db.prepare(`UPDATE users SET full_name = ?, email = ? WHERE id = ? `).run(full_name, email, id);
+};
+
+const changePassword = (id, newPassword) => {
+    return db.prepare(`UPDATE users SET password = ? WHERE id = ?`).run(newPassword, id);
 };
 
 module.exports = {
     addUser,
     getUserEmail,
     getUserById,
-    deleteUser
+    deleteUser,
+    updateUserInfo,
+    changePassword
 };

@@ -15,8 +15,10 @@ const languageChange = set => ({
 
 const userAuth = set => ({
     user: null,
+    accessToken: null,
     setUser: user => set({ user }),
-    clearUser: () => set({ user: null })
+    setAccessToken: token => set({ accessToken: token }),
+    clearUser: () => set({ user: null, accessToken: null })
 })
 
 const useCart = set => ({
@@ -34,6 +36,9 @@ export const useStore = create(
             ...userAuth(set),
             ...useCart(set)
         }),
-        { name: 'online-clothing-shop-data' }
+        { 
+            name: 'online-clothing-shop-data',
+            partialize: (s) => ({ theme: s.theme, lang: s.lang, cart: s.cart })
+        }
     )
 )

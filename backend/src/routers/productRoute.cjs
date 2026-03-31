@@ -3,7 +3,6 @@ const productRouter = express.Router();
 
 const {
     getAllProducts,
-    getProductByCategory,
     getProductById,
     addProduct,
     removeProduct,
@@ -13,8 +12,6 @@ const {
 productRouter.get('/', getAllProducts);
 
 productRouter.get('/counts', getCategoryCounts);
-
-productRouter.get('/:category', getProductByCategory);
 
 productRouter.get('/id/:id', getProductById);
 

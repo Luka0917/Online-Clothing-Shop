@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
-import { useStore, api } from "../store/store"
-import useInView from "../hooks/useInView";
-import axios from 'axios'
-import { Link } from 'react-router'
+import { useStore, api } from "../store/store";
+import axios from 'axios';
+import { Link } from 'react-router';
 import { useSearchParams } from "react-router";
-import Navbar from "../components/Navbar"
-import Footer from "../components/Footer"
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import { GiSettingsKnobs } from "react-icons/gi";
 
 export default function Shop(){

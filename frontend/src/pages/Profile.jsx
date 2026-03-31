@@ -1,8 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router';
 import { useStore } from '../store/store';
 import NavBar from '../components/Navbar';
 import PersonalInfo from '../components/PersonalInfo';
 import Orders from '../components/Orders';
+import Security from '../components/Security';
+import DangerZone from '../components/DangerZone';
 import Footer from '../components/Footer';
 import { FiUser } from "react-icons/fi";
 import { LuShoppingBag } from "react-icons/lu";
@@ -12,13 +15,23 @@ import { FaRegTrashAlt } from "react-icons/fa";
 export default function Profile(){
     const { theme, lang, user } = useStore();
     const profileCharacter = user ? user.full_name.split(' ')[0][0].toUpperCase() : '';
+    const navigate = useNavigate();
     const [sideBar, setSideBar] = useState([
         { icon: <FiUser size={20} />, textEn: 'Profile', textKa: 'პროფილი', chosen: true },
-        { icon: <LuShoppingBag size={20} />, textEn: 'Orders', textKa: 'შეკვეტები', chosen: false },
+        { icon: <LuShoppingBag size={20} />, textEn: 'Orders', textKa: 'შეკვეთები', chosen: false },
         { icon: <GoLock size={20} />, textEn: 'Security', textKa: 'უსაფრთხოება', chosen: false },
         { icon: <FaRegTrashAlt size={20} />, textEn: 'Danger Zone', textKa: 'სახიფათო ზონა', chosen: false },
     ])
     const activeTab = sideBar.find(el => el.chosen).textEn;
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            if(!user) navigate('/auth');
+        }, 1000);
+        return () => clearTimeout(timer);
+    }, [user]);
+
+    if(!user) return null;
 
     return (
         <div className={`${theme === 'light' ? 'bg-[#f9f7f5]' : 'bg-[#171311]'} min-h-screen transition-all duration-200`}>
@@ -51,8 +64,8 @@ export default function Profile(){
                     <div className='w-full text-white'>
                         {activeTab === 'Profile' && <PersonalInfo />}
                         {activeTab === 'Orders' && <Orders />}
-                        {activeTab === 'Security' && (<div>Security</div>)}
-                        {activeTab === 'Danger Zone' && (<div>Danger Zone</div>)}
+                        {activeTab === 'Security' && <Security />}
+                        {activeTab === 'Danger Zone' && <DangerZone />}
                     </div>
                 </div>
             </div>

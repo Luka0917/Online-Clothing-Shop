@@ -32,7 +32,7 @@ export default function Footer(){
                 </div>
             </div>
             <div className={`${theme === 'light' ? 'border-[#e5e0dc]' : 'border-[#38312e]'} flex justify-between items-center w-325 mt-7 border-t pt-3`}>
-                <span className="text-xs text-[#988a7e]">© 2026 MAISON. All rights reserved.</span>
+                <span className="text-xs text-[#988a7e]">© 2026 MAISON. {lang === 'en' ? 'All rights reserved.' : 'ყველა უფლება დაცულია.'}</span>
                 <span className="text-xs text-[#988a7e]">₾(U)k4</span>
             </div>
         </div>

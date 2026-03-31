@@ -16,7 +16,11 @@ const addProduct = (user_id, product_id, quantity) => {
     }else{
         db.prepare(`INSERT INTO cart (user_id, product_id, quantity) VALUES (?, ?, ?)`).run(user_id, product_id, quantity);
     }
-}
+};
+
+const clearCartByUser = user_id => {
+    return db.prepare(`DELETE FROM cart WHERE user_id = ?`).run(user_id);
+};
 
 const removeProduct = id => {
     return db.prepare(`DELETE FROM cart WHERE id = ?`).run(id);
@@ -24,10 +28,6 @@ const removeProduct = id => {
 
 const updateQuantity = (id, quantity) => {
     return db.prepare(`UPDATE cart SET quantity = ? WHERE id = ?`).run(quantity, id);
-};
-
-const clearCartByUser = user_id => {
-    return db.prepare(`DELETE FROM cart WHERE user_id = ?`).run(user_id);
 };
 
 module.exports = {

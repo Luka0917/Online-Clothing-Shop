@@ -4,10 +4,6 @@ const getAllProducts = () => {
     return db.prepare(`SELECT * FROM products`).all();
 };
 
-const getProductByCategory = categoryName => {
-    return db.prepare(`SELECT * FROM products WHERE category = ?`).all(categoryName);
-};
-
 const getProductById = id => {
     return db.prepare(`SELECT * FROM products WHERE id = ?`).get(id);
 };
@@ -29,7 +25,6 @@ const getCategoryCounts = () => {
 
 module.exports = {
     getAllProducts,
-    getProductByCategory,
     getProductById,
     addProduct,
     removeProduct,

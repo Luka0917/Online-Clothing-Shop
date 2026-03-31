@@ -1,18 +1,18 @@
 import { useState, useId } from "react";
 import { useStore, api } from "../store/store";
+import { jwtDecode } from "jwt-decode";
 import { Link } from "react-router";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import { GoArrowLeft } from "react-icons/go";
 import { CiMail } from "react-icons/ci";
 import { GoLock } from "react-icons/go";
-import { LuEye } from "react-icons/lu";
 import { LuEyeOff } from "react-icons/lu";
-
+import { LuEye } from "react-icons/lu";
 
 export default function SignIn({ setSignIn, setForgotPassword }){
     const [showPassword, setShowPassword] = useState(false);
-    const { theme, lang, setUser } = useStore();
+    const { theme, lang, setUser, setAccessToken } = useStore();
     const emailId = useId();
     const passwordId = useId();
     const navigate = useNavigate();
@@ -25,9 +25,12 @@ export default function SignIn({ setSignIn, setForgotPassword }){
         const password = formData.get('password');
 
         try{
-            const result = await axios.post(`${api}/users/login`, { email, password });
+            const result = await axios.post(`${api}/users/login`, { email, password }, { withCredentials: true });
             if(result.status === 200){
-                setUser(result.data.user);
+                const { accessToken } = result.data;
+                const user = jwtDecode(accessToken);
+                setAccessToken(accessToken);
+                setUser(user);
                 setSignIn(true);
                 navigate('/');
             }

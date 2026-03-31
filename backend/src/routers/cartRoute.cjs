@@ -9,11 +9,11 @@ const {
     clearCart
 } = require('../controllers/cartController.cjs');
 
-cartRouter.get('/:id', getCartByUser);
+cartRouter.get('/:user_id', getCartByUser);
 
-cartRouter.post('/', addProduct);
+cartRouter.post('/:user_id', addProduct);
 
-cartRouter.delete('/user/:id', clearCart);
+cartRouter.delete('/clear/:user_id', clearCart);
 
 cartRouter.delete('/:id', removeProduct);
 

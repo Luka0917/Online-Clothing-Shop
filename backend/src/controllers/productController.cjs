@@ -1,19 +1,15 @@
 const productModel = require('../models/productModel.cjs');
 
+//& /products
+//^ GET    /          -> get all products
+//^ GET    /counts    -> get category count
+//^ GET    /id/:id    -> get product by id
+//^ POST   /          -> add product
+//^ DELETE /:id       -> remove product
+
 const getAllProducts = (req, res) => {
     try {
         const products = productModel.getAllProducts();
-        res.json(products);
-    }catch(err){
-        console.error(err);
-        res.status(500).json({ message: 'Server error!' });
-    }
-};
-
-const getProductByCategory = (req, res) => {
-    try{
-        const categoryName = req.params.category;
-        const products = productModel.getProductByCategory(categoryName);
         res.json(products);
     }catch(err){
         console.error(err);
@@ -72,7 +68,6 @@ const getCategoryCounts = (req, res) => {
 
 module.exports = {
     getAllProducts,
-    getProductByCategory,
     getProductById,
     addProduct,
     removeProduct,

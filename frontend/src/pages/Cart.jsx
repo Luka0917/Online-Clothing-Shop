@@ -56,7 +56,7 @@ export default function Cart(){
 
     async function clearCartFunc(){
         try{
-            await axios.delete(`${api}/cart/user/${user.id}`);
+            await axios.delete(`${api}/cart/clear/${user.id}`);
             clearCart();
         }catch(err){
             console.error(err);

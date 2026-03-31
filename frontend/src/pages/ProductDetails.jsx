@@ -64,7 +64,7 @@ export default function ProductDetails(){
             return;
         }
         try{
-            await axios.post(`${api}/cart`, { user_id: user.id, product_id: id, quantity });
+            await axios.post(`${api}/cart/${user.id}`, { product_id: id, quantity });
             addItem(quantity);
         }catch(err){
             console.error(err);

@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { useNavigate } from "react-router";
+import { useStore, api } from '../store/store';
+import axios from 'axios';
 import { Link } from 'react-router'
 import { GoGlobe } from "react-icons/go";
 import { FiMoon } from "react-icons/fi";
 import { LuSun } from "react-icons/lu";
 import { FiUser } from "react-icons/fi";
 import { LuShoppingCart } from "react-icons/lu";
-import { useStore } from '../store/store';
 
 export default function Navbar({ page }){
     const [dropdown, setDropDown] = useState(false);
@@ -14,6 +15,17 @@ export default function Navbar({ page }){
     const firstName = user ? user.full_name.split(' ')[0].charAt(0).toUpperCase() + user.full_name.split(' ')[0].slice(1) : '';
     const profileCharacter = user ? user.full_name.split(' ')[0][0].toUpperCase() : '';
     const navigate = useNavigate();
+
+    async function logout(){
+        try{
+            await axios.post(`${api}/users/logout`);
+            clearUser();
+            setDropDown(false);
+            navigate('/')
+        }catch(err){
+            console.error(err);
+        }
+    }
 
     return (
         <div 
@@ -73,7 +85,7 @@ export default function Navbar({ page }){
                                         {lang === 'en' ? 'My Profile' : 'ჩემი პროფილი'}
                                     </Link>
                                     <button 
-                                        onClick={() => { clearUser(); setDropDown(false); navigate('/') }}
+                                        onClick={logout}
                                         className={`
                                             ${theme === 'light' ? 'text-black hover:text-white' : 'text-white'}
                                             block w-37.5 text-left px-4 py-2 mx-1 mt-1 mb-2 text-sm font-medium rounded hover:bg-[#ce8a3e] cursor-pointer transition-all duration-200

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router';
 import { LuShoppingBag } from "react-icons/lu";
 
 export default function Orders(){
-    const { theme, lang } = useStore();
+    const { theme, lang, user } = useStore();
     const [orders, setOrders] = useState([]);
     const navigate = useNavigate();
 
@@ -15,7 +15,7 @@ export default function Orders(){
                 const result = await axios.get(`${api}/orders/${user.id}`);
                 setOrders(result.data);
             }catch(err){
-                console.error(err);
+                console.error(`Error fetching orders: ${err}`);
             }
         }
         fetchOrders();
