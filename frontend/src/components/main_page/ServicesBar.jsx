@@ -1,5 +1,5 @@
-import { useStore } from "../store/store";
-import useInView from "../hooks/useInView";
+import { useStore } from "../../store/store";
+import useInView from "../../hooks/useInView";
 import { LuTruck } from "react-icons/lu";
 import { FaArrowRotateLeft } from "react-icons/fa6";
 import { LuShield } from "react-icons/lu";

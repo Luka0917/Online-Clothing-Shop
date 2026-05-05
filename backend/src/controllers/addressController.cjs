@@ -23,10 +23,10 @@ const addAddress = (req, res) => {
         const user_id = req.params.user_id;
         const { label, street_address, city, state, ZIP_code, country } = req.body
 
-        if(!label || !street_address || !city || !state || !ZIP_code || !country) return res.status(400).json({ message: 'Fillout all the fields!' })
+        if(!street_address || !city || !state || !ZIP_code || !country) return res.status(400).json({ message: 'Fillout all the fields!' })
 
-        addressModel.addAddress(user_id, label, street_address, city, state, ZIP_code, country);
-        res.status(201).json({ message: 'Address added!' });
+        const result = addressModel.addAddress(user_id, label, street_address, city, state, ZIP_code, country);
+        res.status(201).json({ message: 'Address added!', id: result.lastInsertRowid });
     }catch(err){
         console.error(err);
         res.status(500).json({ message: 'Server error!' });

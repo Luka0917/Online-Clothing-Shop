@@ -1,5 +1,5 @@
 import { useId } from "react";
-import { useStore } from "../store/store";
+import { useStore } from "../../store/store";
 import { Link } from "react-router";
 import { GoArrowLeft } from "react-icons/go";
 import { CiMail } from "react-icons/ci";

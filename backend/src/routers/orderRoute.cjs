@@ -4,6 +4,7 @@ const orderRouter = express.Router();
 const {
     getAllOrders,
     getOrdersByUser,
+    getOrderDetails,
     checkout,
     updateOrderStatus,
     deleteOrder
@@ -11,9 +12,11 @@ const {
 
 orderRouter.get('/', getAllOrders);
 
-orderRouter.get('/:id', getOrdersByUser);
+orderRouter.get('/:user_id', getOrdersByUser);
 
-orderRouter.post('/', checkout);
+orderRouter.get('/:user_id/:order_id', getOrderDetails);
+
+orderRouter.post('/:user_id/checkout', checkout);
 
 orderRouter.put('/:id', updateOrderStatus);
 

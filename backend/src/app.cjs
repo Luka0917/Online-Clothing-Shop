@@ -9,6 +9,7 @@ const cartRouter = require('./routers/cartRoute.cjs');
 const orderRouter = require('./routers/orderRoute.cjs');
 const productRouter = require('./routers/productRoute.cjs');
 const addressRouter = require('./routers/addressRoute.cjs');
+const paymentMethodRouter = require('./routers/paymentMethodRoute.cjs');
 
 const notFoundMiddleware = require('./middleware/notFoundMiddleware.cjs');
 
@@ -21,6 +22,7 @@ app.use('/cart', cartRouter);
 app.use('/orders', orderRouter);
 app.use('/products', productRouter);
 app.use('/address', addressRouter);
+app.use('/payment-method', paymentMethodRouter);
 
 app.use(notFoundMiddleware);
 

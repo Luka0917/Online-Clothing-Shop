@@ -1,5 +1,5 @@
 import { useState, useId } from "react";
-import { useStore, api } from "../store/store";
+import { useStore, api } from "../../store/store";
 import { jwtDecode } from "jwt-decode";
 import { Link } from "react-router";
 import axios from "axios";
@@ -12,7 +12,7 @@ import { LuEye } from "react-icons/lu";
 
 export default function SignIn({ setSignIn, setForgotPassword }){
     const [showPassword, setShowPassword] = useState(false);
-    const { theme, lang, setUser, setAccessToken } = useStore();
+    const { theme, lang, setUser, setAccessToken, addItem } = useStore();
     const emailId = useId();
     const passwordId = useId();
     const navigate = useNavigate();
@@ -31,6 +31,11 @@ export default function SignIn({ setSignIn, setForgotPassword }){
                 const user = jwtDecode(accessToken);
                 setAccessToken(accessToken);
                 setUser(user);
+
+                const cartResult = await axios.get(`${api}/cart/${user.id}`);
+                const cartCount = cartResult.data.reduce((total, el) => total + el.quantity, 0);
+                addItem(cartCount);
+
                 setSignIn(true);
                 navigate('/');
             }

@@ -21,7 +21,7 @@ export default function Navbar({ page }){
             await axios.post(`${api}/users/logout`);
             clearUser();
             setDropDown(false);
-            navigate('/')
+            navigate('/');
         }catch(err){
             console.error(err);
         }
@@ -38,7 +38,7 @@ export default function Navbar({ page }){
                 <Link to={'/'} className={`${page === 'home' ? 'text-[#ce8a3e]' : 'text-[#827b77]'} font-medium cursor-pointer hover:text-[#ce8a3e] transition-all duration-200`}>{lang === 'en' ? 'HOME' : 'მთავარი'}</Link>
                 <Link to={'/shop'} className={`${page === 'shop' ? 'text-[#ce8a3e]' : 'text-[#827b77]'} font-medium cursor-pointer hover:text-[#ce8a3e] transition-all duration-200`}>{lang === 'en' ? 'SHOP' : 'პროდუქტები'}</Link>
                 <Link to={'/about'} className={`${page === 'about' ? 'text-[#ce8a3e]' : 'text-[#827b77]'} font-medium cursor-pointer hover:text-[#ce8a3e] transition-all duration-200`}>{lang === 'en' ? 'ABOUT' : 'ჩვენს შესახებ'}</Link>
-                {/* <a className={`${page === 'admin' ? 'text-[#ce8a3e]' : 'text-[#827b77]'} font-medium cursor-pointer hover:text-[#ce8a3e] transition-all duration-200`}>ADMIN</a> */}
+                {(user && user.role === 'admin') && <Link to={'/admin'} className={`${page === 'admin' ? 'text-[#ce8a3e]' : 'text-[#827b77]'} font-medium cursor-pointer hover:text-[#ce8a3e] transition-all duration-200`}>{lang === 'en' ? 'ADMIN' : 'ადმინი'}</Link>}
             </nav>
             <div className='flex justify-center items-center gap-5'>
                 <button
@@ -76,7 +76,7 @@ export default function Navbar({ page }){
                                 >
                                     <p className="text-[#988a7e] text-xs px-4 my-2 truncate">{user.email}</p>
                                     <Link 
-                                        to={'/profile'} 
+                                        to={'/profile?section=Profile'}
                                         className={`
                                             ${theme === 'light' ? 'text-black hover:text-white' : 'text-white'} 
                                             block px-4 mx-1 py-2 text-sm font-medium rounded hover:bg-[#ce8a3e] transition-all duration-200
@@ -115,7 +115,7 @@ export default function Navbar({ page }){
                     `}
                     >
                         <LuShoppingCart size={20} />
-                        <span className={`${theme === 'light' ? 'text-black' : 'text-white'}`}>{cart}</span>
+                        <span className={`${theme === 'light' ? 'text-black' : 'text-white'}`}>{user && cart}</span>
                 </Link>
             </div>
         </div>

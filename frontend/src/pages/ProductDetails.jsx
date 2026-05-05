@@ -174,8 +174,10 @@ export default function ProductDetails(){
                         }
                         <button
                             onClick={addItemToCart}
+                            disabled={product.stock === 0}
                             className={`
                                 ${theme === 'light' ? 'bg-[#1c1917] text-white hover:bg-[#312e2d]' : 'bg-[#eeebe8] text-black hover:bg-[#d8d5d2]'}
+                                ${product.stock === 0 && 'opacity-50 cursor-not-allowed hover:bg-[#1c1917]'}
                                 flex justify-center items-center gap-5 w-140 rounded py-3 mt-5 cursor-pointer transition-all duration-200
                             `}
                             >

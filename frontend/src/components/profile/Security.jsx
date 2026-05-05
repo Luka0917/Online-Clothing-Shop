@@ -1,5 +1,5 @@
 import { useState, useId } from 'react';
-import { useStore, api } from '../store/store';
+import { useStore, api } from '../../store/store';
 import axios from 'axios';
 import { GoLock } from "react-icons/go";
 import { LuEyeOff } from "react-icons/lu";

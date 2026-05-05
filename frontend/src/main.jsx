@@ -11,6 +11,9 @@ import AuthPage from './pages/authPage.jsx';
 import About from './pages/About.jsx';
 import Cart from './pages/Cart.jsx';
 import Profile from './pages/Profile.jsx';
+import Checkout from './pages/Checkout.jsx';
+import OrderDetails from './pages/OrderDetails.jsx';
+import ErrorPage from './pages/ErrorPage.jsx';
 
 const router = createBrowserRouter([
   { path: '/', Component: App },
@@ -19,11 +22,14 @@ const router = createBrowserRouter([
   { path: '/auth', Component: AuthPage },
   { path: '/about', Component: About },
   { path: '/cart', Component: Cart },
-  { path: '/profile', Component: Profile }
+  { path: '/profile', Component: Profile },
+  { path: '/checkout', Component: Checkout },
+  { path: '/orderDetails/:orderId', Component: OrderDetails },
+  { path: '*', Component: ErrorPage }
 ]);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <RouterProvider router={router} />
   </StrictMode>
-)
+);

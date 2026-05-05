@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from 'axios';
-import useInView from "../hooks/useInView";
+import useInView from "../../hooks/useInView";
 import { Link } from 'react-router';
-import { useStore, api } from "../store/store";
+import { useStore, api } from "../../store/store";
 import { IoArrowForward } from "react-icons/io5";
 
 export default function NewArrivals(){

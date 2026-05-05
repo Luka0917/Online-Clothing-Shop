@@ -1,5 +1,5 @@
-import { useStore } from "../store/store";
-import useInView from "../hooks/useInView";
+import { useStore } from "../../store/store";
+import useInView from "../../hooks/useInView";
 import { FaStar } from "react-icons/fa";
 
 export default function Testimonials(){

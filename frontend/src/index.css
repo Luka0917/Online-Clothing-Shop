@@ -22,6 +22,30 @@
   padding-bottom: 75px;
 }
 
+.scroll-light::-webkit-scrollbar{
+  width: 5px;
+}
+.scroll-light::-webkit-scrollbar-track{
+  background: #f1f0ee;
+  border-radius: 999px;
+}
+.scroll-light::-webkit-scrollbar-thumb{
+  background: #ce8a3e;
+  border-radius: 999px;
+}
+
+.scroll-dark::-webkit-scrollbar{
+  width: 5px;
+}
+.scroll-dark::-webkit-scrollbar-track{
+  background: #322c29;
+  border-radius: 999px;
+}
+.scroll-dark::-webkit-scrollbar-thumb{
+  background: #ce8a3e;
+  border-radius: 999px;
+}
+
 .slide-in-left-animation{
   animation: slide-in-left 0.5s;
 }
@@ -42,6 +66,10 @@
 .scale-in-bottom-animation{
   animation: scale-in-bottom 0.2s ease both;
   opacity: 0;
+}
+
+.scale-in-center-animation{
+  animation: scale-in-center 0.5s;
 }
 
 /*! ---------- most of thing on website ---------- */
@@ -190,6 +218,33 @@
             transform: scale(1);
     -webkit-transform-origin: 50% 100%;
             transform-origin: 50% 100%;
+    opacity: 1;
+  }
+}
+/*! --------------------------------- */
+
+/*! ---------- place order ---------- */
+@-webkit-keyframes scale-in-center {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes scale-in-center {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
     opacity: 1;
   }
 }

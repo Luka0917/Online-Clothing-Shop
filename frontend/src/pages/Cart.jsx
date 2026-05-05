@@ -58,6 +58,7 @@ export default function Cart(){
         try{
             await axios.delete(`${api}/cart/clear/${user.id}`);
             clearCart();
+            setUsercart([]);
         }catch(err){
             console.error(err);
         }
@@ -81,7 +82,7 @@ export default function Cart(){
         try{
             const item = userCart.find(el => el.cart_id === id);
             await axios.delete(`${api}/cart/${id}`);
-            setUsercart(prev => prev.filter(el => el.cart_id === id));
+            setUsercart(prev => prev.filter(el => el.cart_id !== id));
             removeItem(item.quantity);
         }catch(err){
             console.error(err);
@@ -130,15 +131,15 @@ export default function Cart(){
                             <LuShoppingCart size={50} />
                             <p className="mt-3 text-xl">{lang === 'en' ? 'Nothing in your cart yet.' : 'თქვენს კალათაში ჯერ არაფერია.'}</p>
                             <p className="text-sm mt-1">{lang === 'en' ? 'Explore our collection and find something you love.' : 'დაათვალიერეთ ჩვენი კოლექცია და იპოვეთ ის, რაც მოგწონთ.'}</p>
-                            <Link
+                            <button
+                                onClick={() => navigate('/shop?category=all&stock=true&sort=default')}
                                 className={`
                                     ${theme === 'light' ? 'bg-[#1c1917] text-white hover:bg-[#312e2d]' : 'bg-[#eeebe8] text-black hover:bg-[#d8d5d2]'}
-                                    px-3 py-1.5 font-medium rounded mt-5
+                                    px-3 py-1.5 font-medium rounded mt-5 cursor-pointer transition-all duration-200
                                 `}
-                                to={'/shop?category=all&stock=true&sort=default'}
                                 >
                                     {lang === 'en' ? 'Continue Shopping' : 'შოპინგის გაგრძელება'}
-                            </Link>
+                            </button>
                         </div>
 
                         <div>
@@ -257,7 +258,8 @@ export default function Cart(){
                                     </p>
                                 )}
                                 <h2 className={`${theme === 'light' ? 'text-black border-[#e5e0dc]' : 'text-white border-[#38312e]'} font text-xl border-t mt-5 pt-3 w-full flex justify-between`}>{lang === 'en' ? 'Total' : 'ჯამი'} <span>${orderTotal.toFixed(2)}</span></h2>
-                                <button 
+                                <button
+                                    onClick={() => navigate('/checkout')}
                                     className={`
                                         ${theme === 'light' ? 'text-white bg-[#1c1917] hover:bg-[#322f2e] ' : 'text-black bg-[#eeebe8] hover:bg-[#d9d6d3]'} 
                                         flex justify-center items-center gap-2 w-full text-sm font-medium mt-5 py-2.5 rounded cursor-pointer transition-all duration-200

@@ -1,12 +1,12 @@
 import { Link } from 'react-router';
 import Navbar from "./components/Navbar";
-import useInView from './hooks/useInView';
-import HeroSection from './components/HeroSection';
-import ServicesBar from "./components/ServicesBar";
-import NewArrivals from "./components/NewArrivals";
-import CategoryNavigation from "./components/CategoryNavigation";
-import Testimonials from "./components/Testimonials";
+import HeroSection from "./components/main_page/HeroSection";
+import ServicesBar from "./components/main_page/ServicesBar";
+import NewArrivals from "./components/main_page/NewArrivals";
+import CategoryNavigation from "./components/main_page/CategoryNavigation";
+import Testimonials from "./components/main_page/Testimonials";
 import Footer from "./components/Footer";
+import useInView from './hooks/useInView';
 import { useStore } from "./store/store"
 import { IoArrowForward } from "react-icons/io5";
 import emailjs from "@emailjs/browser";

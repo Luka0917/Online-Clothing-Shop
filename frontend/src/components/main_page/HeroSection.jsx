@@ -1,6 +1,6 @@
-import { useStore } from '../store/store';
-import useInView from '../hooks/useInView';
-import heroImage from '../assets/hero-fashion-new.jpg';
+import { useStore } from '../../store/store';
+import useInView from '../../hooks/useInView';
+import heroImage from '../../assets/hero-fashion-new.jpg';
 import { IoArrowForward } from "react-icons/io5";
 import { Link } from 'react-router';
 

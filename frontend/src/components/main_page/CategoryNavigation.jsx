@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import useInView from "../hooks/useInView";
+import useInView from "../../hooks/useInView";
 import { Link } from 'react-router'
-import { useStore, api } from "../store/store";
+import { useStore, api } from "../../store/store";
 import { LuCrown } from "react-icons/lu";
 import { LuSparkles } from "react-icons/lu";
 import { LuShirt } from "react-icons/lu";

@@ -35,29 +35,6 @@ db.exec(`
 `);
 
 db.exec(`
-    CREATE TABLE IF NOT EXISTS orders (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        user_id INTEGER,
-        total_price REAL,
-        status TEXT DEFAULT 'pending',
-        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
-    );
-`);
-
-db.exec(`
-    CREATE TABLE IF NOT EXISTS order_items (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        order_id INTEGER,
-        product_id INTEGER,
-        quantity INTEGER,
-        price_at_time REAL,
-        FOREIGN KEY(order_id) REFERENCES orders(id) ON DELETE CASCADE,
-        FOREIGN KEY(product_id) REFERENCES products(id)
-    );
-`);
-
-db.exec(`
     CREATE TABLE IF NOT EXISTS cart (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         user_id INTEGER,
@@ -83,4 +60,41 @@ db.exec(`
     );
 `);
 
-module.exports = db;
+db.exec(`
+    CREATE TABLE IF NOT EXISTS payment_methods (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        user_id INTEGER,
+        type TEXT NOT NULL,
+        label TEXT,
+        details TEXT NOT NULL,
+        is_default INTEGER DEFAULT 0,
+        FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
+    );
+`);
+
+db.exec(`
+    CREATE TABLE IF NOT EXISTS orders (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        user_id INTEGER,
+        total_price REAL,
+        status TEXT DEFAULT 'pending',
+        shipping_address TEXT,
+        payment_method TEXT,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
+    );
+`);
+
+db.exec(`
+    CREATE TABLE IF NOT EXISTS order_items (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        order_id INTEGER,
+        product_id INTEGER,
+        quantity INTEGER,
+        price_at_time REAL,
+        FOREIGN KEY(order_id) REFERENCES orders(id) ON DELETE CASCADE,
+        FOREIGN KEY(product_id) REFERENCES products(id)
+    );
+`);
+
+module.exports = db;    

@@ -1,5 +1,5 @@
 import { useState, useId } from "react";
-import { useStore, api } from "../store/store";
+import { useStore, api } from "../../store/store";
 import { Link } from "react-router";
 import axios from 'axios';
 import { useNavigate } from "react-router";

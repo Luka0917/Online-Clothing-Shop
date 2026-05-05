@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
-import { useStore, api } from '../store/store';
+import { useStore, api } from '../../store/store';
 import axios from "axios";
 import { useNavigate } from 'react-router';
 import { LuTriangleAlert } from "react-icons/lu";
